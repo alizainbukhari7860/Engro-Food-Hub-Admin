@@ -1,0 +1,569 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jul 29, 2020 at 06:06 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.3
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `engro`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account`
+--
+
+CREATE TABLE `account` (
+  `ID` int(11) NOT NULL,
+  `UnPaidDues` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accountpayment`
+--
+
+CREATE TABLE `accountpayment` (
+  `ID` int(11) NOT NULL,
+  `Account` int(11) NOT NULL,
+  `Payment` int(11) NOT NULL,
+  `Date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `email` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`email`, `password`) VALUES
+('alizainbukhari7860@gmail.com', 'ali123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `ID` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `Menu` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`ID`, `name`, `Menu`) VALUES
+(1, 'Paratha', 2),
+(2, 'Eggs', 2),
+(3, 'Curry', 2),
+(4, 'Toast', 2),
+(5, 'Beverages and Coffee', 2),
+(6, 'Halwa Poori', 2),
+(7, 'Milk', 2),
+(11, 'Chips', 44),
+(14, 'Soup', 4),
+(15, 'Main', 4),
+(16, 'Sides & Salads', 4),
+(17, 'Platter', 4),
+(18, 'Burgers', 4),
+(19, 'sandwiches', 4),
+(20, 'Supplementory', 4),
+(21, 'Beverages', 4),
+(22, 'BBQ', 16),
+(23, 'Burgers', 16),
+(24, 'sandwiches', 16);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item`
+--
+
+CREATE TABLE `item` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL,
+  `Price` int(11) NOT NULL,
+  `Category` int(11) NOT NULL,
+  `PreparationTime` int(11) NOT NULL,
+  `Calories` int(11) DEFAULT NULL,
+  `isdelete` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`ID`, `Name`, `Price`, `Category`, `PreparationTime`, `Calories`, `isdelete`) VALUES
+(385, 'Bukhari test', 20, 22, 2, 1, 0),
+(386, 'test 2', 3, 11, 23, 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `members`
+--
+
+CREATE TABLE `members` (
+  `ID` int(11) NOT NULL,
+  `Username` varchar(255) NOT NULL,
+  `Email` varchar(255) NOT NULL,
+  `Password` varchar(255) NOT NULL,
+  `UserVehicleRegistrationNo` varchar(255) NOT NULL,
+  `PersonalNumber` int(11) NOT NULL,
+  `Address` varchar(255) NOT NULL,
+  `Designation` varchar(255) NOT NULL,
+  `PhoneNumber` varchar(255) NOT NULL,
+  `isdelete` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `members`
+--
+
+INSERT INTO `members` (`ID`, `Username`, `Email`, `Password`, `UserVehicleRegistrationNo`, `PersonalNumber`, `Address`, `Designation`, `PhoneNumber`, `isdelete`) VALUES
+(27, 'Ali Zain Bukhari', 'alizainbukhari7860@gmail.com', 'abc123lol', 'BR-550', 5473, 'Lahore, Pakistan', 'Internee', '03053207778', 0),
+(28, 'hadi', 'hadimajid@outlook.com', 'hadi1212', 'lea-2001', 123, 'aasd', 'sadasd', '000001111', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `menu`
+--
+
+CREATE TABLE `menu` (
+  `ID` int(11) NOT NULL,
+  `Name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `menu`
+--
+
+INSERT INTO `menu` (`ID`, `Name`) VALUES
+(2, 'Week 1-Monday Breakfast'),
+(3, 'Week 1-Monday Lunch'),
+(4, 'Monday Dinner'),
+(5, 'Week 1-Tuesday Breakfast'),
+(6, 'Week 1-Tuesday Lunch'),
+(7, 'Tuesday Dinner'),
+(8, 'Week 1-Wednesday Breakfast'),
+(9, 'Week 1-Wednesday Lunch'),
+(10, 'Dinner'),
+(11, 'Week 1-Thursday Breakfast'),
+(12, 'Week 1-Thursday Lunch'),
+(13, 'Thursday Dinner'),
+(14, 'Week 1-Friday Breakfast'),
+(15, 'Week 1-Friday Lunch'),
+(16, 'Friday Dinner'),
+(17, 'Week 1-Saturday Breakfast'),
+(18, 'Week 1-Saturday Lunch'),
+(19, 'Saturday Dinner'),
+(20, 'Week 1-Sunday Breakfast'),
+(21, 'Week 1-Sunday Lunch'),
+(22, 'Sunday Dinner'),
+(23, 'Week 2-Monday Breakfast'),
+(24, 'Week 2-Monday Lunch'),
+(26, 'Week 2-Tuesday Breakfast'),
+(27, 'Week 2-Tuesday Lunch'),
+(29, 'Week 2-Wednesday Breakfast'),
+(30, 'Week 2-Wednesday Lunch'),
+(32, 'Week 2-Thursday Breakfast'),
+(33, 'Week 2-Thursday Lunch'),
+(35, 'Week 2-Friday Breakfast'),
+(36, 'Week 2-Friday Lunch'),
+(38, 'Week 2-Saturday Breakfast'),
+(39, 'Week 2-Saturday Lunch'),
+(41, 'Week 2-Sunday Breakfast'),
+(42, 'Week 2-Sunday Lunch'),
+(44, 'Week 1-Monday Snacks'),
+(45, 'Week 1-Tuesday Snacks'),
+(46, 'Week 1-Wednesday Snacks'),
+(47, 'Week 1-Thursday Snacks'),
+(48, 'Week 1-Friday Snacks'),
+(49, 'Week 1-Saturday Snacks'),
+(50, 'Week 1-Sunday Snacks'),
+(51, 'Week 2-Monday Snacks'),
+(52, 'Week 2-Tuesday Snacks'),
+(53, 'Week 2-Wednesday Snacks'),
+(54, 'Week 2-Thursday Snacks'),
+(55, 'Week 2-Friday Snacks'),
+(56, 'Week 2-Saturday Snacks'),
+(57, 'Week 2-Sunday Snacks');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `ID` int(11) NOT NULL,
+  `User` int(11) NOT NULL,
+  `Date` datetime NOT NULL,
+  `Bill` int(11) NOT NULL,
+  `Served` bit(1) NOT NULL,
+  `TotalPreparationTime` int(11) NOT NULL,
+  `CancellationTime` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`ID`, `User`, `Date`, `Bill`, `Served`, `TotalPreparationTime`, `CancellationTime`) VALUES
+(1, 27, '2020-07-27 00:00:00', 100, b'1', 0, 0),
+(2, 28, '2020-07-29 20:36:25', 100, b'1', 22, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orderdetails`
+--
+
+CREATE TABLE `orderdetails` (
+  `ID` int(11) NOT NULL,
+  `Order` int(11) NOT NULL,
+  `Item` int(11) NOT NULL,
+  `Quantity` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orderdetails`
+--
+
+INSERT INTO `orderdetails` (`ID`, `Order`, `Item`, `Quantity`) VALUES
+(4, 1, 385, 2),
+(5, 1, 386, 2),
+(6, 2, 386, 2),
+(7, 2, 385, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule`
+--
+
+CREATE TABLE `schedule` (
+  `ID` int(11) NOT NULL,
+  `Week` int(11) NOT NULL,
+  `Day` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `schedule`
+--
+
+INSERT INTO `schedule` (`ID`, `Week`, `Day`) VALUES
+(2, 1, 1),
+(3, 1, 2),
+(4, 1, 3),
+(5, 1, 4),
+(6, 1, 5),
+(7, 1, 6),
+(8, 1, 7),
+(9, 2, 1),
+(10, 2, 2),
+(11, 2, 3),
+(12, 2, 4),
+(13, 2, 5),
+(14, 2, 6),
+(15, 2, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shift`
+--
+
+CREATE TABLE `shift` (
+  `ID` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `startHour` int(11) NOT NULL,
+  `startMinute` int(11) NOT NULL,
+  `endHour` int(11) NOT NULL,
+  `endMinute` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `shift`
+--
+
+INSERT INTO `shift` (`ID`, `name`, `startHour`, `startMinute`, `endHour`, `endMinute`) VALUES
+(1, 'Breakfast', 7, 0, 9, 0),
+(2, 'Lunch', 13, 0, 15, 0),
+(3, 'Dinner', 19, 0, 21, 0),
+(4, 'Snacks', 17, 0, 19, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `time`
+--
+
+CREATE TABLE `time` (
+  `TimeID` int(11) NOT NULL,
+  `Schedule` int(11) NOT NULL,
+  `Shift` int(11) NOT NULL,
+  `MenuID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `time`
+--
+
+INSERT INTO `time` (`TimeID`, `Schedule`, `Shift`, `MenuID`) VALUES
+(1, 2, 1, 2),
+(2, 2, 2, 3),
+(3, 2, 3, 4),
+(4, 3, 1, 5),
+(5, 3, 2, 6),
+(6, 3, 3, 7),
+(7, 4, 1, 8),
+(8, 4, 2, 9),
+(9, 4, 3, 10),
+(10, 5, 1, 11),
+(11, 5, 2, 12),
+(12, 5, 3, 13),
+(13, 6, 1, 14),
+(14, 6, 2, 15),
+(15, 6, 3, 16),
+(16, 7, 1, 17),
+(17, 7, 2, 18),
+(18, 7, 3, 19),
+(19, 8, 1, 20),
+(20, 8, 2, 21),
+(21, 8, 3, 22),
+(22, 9, 1, 23),
+(23, 9, 2, 24),
+(25, 10, 1, 26),
+(26, 10, 2, 27),
+(28, 11, 1, 29),
+(29, 11, 2, 30),
+(31, 12, 1, 32),
+(32, 12, 2, 33),
+(34, 13, 1, 35),
+(35, 13, 2, 36),
+(37, 14, 1, 38),
+(38, 14, 2, 39),
+(40, 15, 1, 41),
+(41, 15, 2, 42),
+(46, 2, 4, 44),
+(47, 3, 4, 45),
+(48, 4, 4, 46),
+(49, 5, 4, 47),
+(50, 6, 4, 48),
+(51, 7, 4, 49),
+(52, 8, 4, 50),
+(53, 9, 4, 51),
+(54, 10, 4, 52),
+(55, 11, 4, 53),
+(56, 12, 4, 54),
+(57, 13, 4, 55),
+(58, 14, 4, 56),
+(59, 15, 4, 57);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `account`
+--
+ALTER TABLE `account`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `accountpayment`
+--
+ALTER TABLE `accountpayment`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Account` (`Account`);
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Menu` (`Menu`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Category` (`Category`);
+
+--
+-- Indexes for table `members`
+--
+ALTER TABLE `members`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Email` (`Email`,`UserVehicleRegistrationNo`,`PersonalNumber`),
+  ADD UNIQUE KEY `Username` (`Username`,`Email`,`UserVehicleRegistrationNo`,`PersonalNumber`);
+
+--
+-- Indexes for table `menu`
+--
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `User` (`User`);
+
+--
+-- Indexes for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `Order` (`Order`),
+  ADD KEY `Item` (`Item`);
+
+--
+-- Indexes for table `schedule`
+--
+ALTER TABLE `schedule`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Week` (`Week`,`Day`);
+
+--
+-- Indexes for table `shift`
+--
+ALTER TABLE `shift`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `time`
+--
+ALTER TABLE `time`
+  ADD PRIMARY KEY (`TimeID`),
+  ADD KEY `Schedule` (`Schedule`),
+  ADD KEY `Shift` (`Shift`),
+  ADD KEY `MenuID` (`MenuID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `account`
+--
+ALTER TABLE `account`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `accountpayment`
+--
+ALTER TABLE `accountpayment`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
+
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=387;
+
+--
+-- AUTO_INCREMENT for table `members`
+--
+ALTER TABLE `members`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT for table `menu`
+--
+ALTER TABLE `menu`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
+--
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `schedule`
+--
+ALTER TABLE `schedule`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `categories`
+--
+ALTER TABLE `categories`
+  ADD CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`Menu`) REFERENCES `menu` (`ID`);
+
+--
+-- Constraints for table `item`
+--
+ALTER TABLE `item`
+  ADD CONSTRAINT `item_ibfk_1` FOREIGN KEY (`Category`) REFERENCES `categories` (`ID`);
+
+--
+-- Constraints for table `order`
+--
+ALTER TABLE `order`
+  ADD CONSTRAINT `order_ibfk_1` FOREIGN KEY (`User`) REFERENCES `members` (`ID`);
+
+--
+-- Constraints for table `orderdetails`
+--
+ALTER TABLE `orderdetails`
+  ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`Order`) REFERENCES `order` (`ID`),
+  ADD CONSTRAINT `orderdetails_ibfk_2` FOREIGN KEY (`Item`) REFERENCES `item` (`ID`);
+
+--
+-- Constraints for table `time`
+--
+ALTER TABLE `time`
+  ADD CONSTRAINT `time_ibfk_1` FOREIGN KEY (`MenuID`) REFERENCES `menu` (`ID`),
+  ADD CONSTRAINT `time_ibfk_2` FOREIGN KEY (`Shift`) REFERENCES `shift` (`ID`),
+  ADD CONSTRAINT `time_ibfk_3` FOREIGN KEY (`Schedule`) REFERENCES `schedule` (`ID`);
+COMMIT;
